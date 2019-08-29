@@ -62,16 +62,21 @@ The r value= -.0630 which is greater then the r value of dino which was -.0645
 
 ### Exercise 4
 
-(Add code and narrative as needed. Note that two R chunks are given but they are not labeled. Use the convention from above to name them appropriately.)
+The new data frame circle_data was assigned to datasaurus_dozen and then filtered to only include observations where dataset== "circle". 
 
-```{r}
+```{r plot-circle}
+circle_data <- datasaurus_dozen %>%
+  filter(dataset == "circle")
 
+ggplot(data = circle_data, mapping = aes(x = x, y = y)) +
+  geom_point()
 ```
 
-```{r}
-
+```{r cor-circle}
+circle_data %>%
+  summarize(r = cor(x, y))
 ```
-
+r value= -.0683
 ### Exercise 5
 
 (Add code and narrative as needed. To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, green C+.)
