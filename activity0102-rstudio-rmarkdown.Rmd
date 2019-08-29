@@ -19,7 +19,6 @@ The data has 1846 rows and 3 columns. The 3 variables include dataset, x, and y.
 
 ### Exercise 2
 
-(The answers for this Exercise are given for you below. But you should clean up some of the narrative so that it only includes what you want to turn in.)
 
 First let's plot the data in the dino dataset:
 
@@ -31,12 +30,15 @@ ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()
 ```
 
+The shape of the data is a dinosaur.
+
 And next calculate the correlation between `x` and `y` in this dataset:
 
 ```{r cor-dino}
 dino_data %>%
   summarize(r = cor(x, y))
 ```
+The r value=-.0645
 
 ### Exercise 3
 
