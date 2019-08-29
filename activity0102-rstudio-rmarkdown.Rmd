@@ -38,7 +38,7 @@ And next calculate the correlation between `x` and `y` in this dataset:
 dino_data %>%
   summarize(r = cor(x, y))
 ```
-The r value=-.0645
+The r value=-.0645 which suggests no linear correlation which is clear in visualization of the data.
 
 ### Exercise 3
 
@@ -58,11 +58,11 @@ The r value was calculated between x and y.
 > star_data %>%
 +   summarize(r = cor(x, y))
 ```
-The r value= -.0630 which is greater then the r value of dino which was -.0645
+The r value= -.0630 The r-value of the star suggests no correlation and is even further away from -1 compared to the dinosaur r-value= -.0645
 
 ### Exercise 4
 
-The new data frame circle_data was assigned to datasaurus_dozen and then filtered to only include observations where dataset== "circle". 
+The new data frame circle_data was assigned to datasaurus_dozen and then filtered to only include observations where dataset== "circle". The data was visualized using the ggplot function. The columns of the data get mapped and another layer is added to the plot (+)to define what geometric shapes represent the observations.  
 
 ```{r plot-circle}
 circle_data <- datasaurus_dozen %>%
@@ -76,7 +76,23 @@ ggplot(data = circle_data, mapping = aes(x = x, y = y)) +
 circle_data %>%
   summarize(r = cor(x, y))
 ```
-r value= -.0683
+r value= -.0683 The r-value of the circle is closer to -1 then the r-value of the dino= -.0645 but clearly there is no linear correlation. 
 ### Exercise 5
 
-(Add code and narrative as needed. To add R chunks either type out the backticks, curly braces, and the letter `r` or use the Insert chunk button above, green C+.)
+All datasets were plotted at once using faceting. the colors were set by color=dataset. The geometric shape used was established by geom_point. ncol=3 created 3 columns and no legend was used. 
+
+```{r plot-faceting}
+ggplot(data = datasaurus_dozen, aes(x = x, y = y, color = dataset)) + 
+  geom_point() + 
+  facet_wrap(~ dataset, ncol = 3) +
+  theme(legend.position = "none")
+```  
+
+group_by was used to summarize the correlation coefficients of all the dataset. 
+
+```{r cor-faceting}
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(r = cor(x, y)) %>%
+  print(13)
+```
